@@ -17,21 +17,51 @@ http://{$ip}:{$port}/{$password}/all
 | ww{$n}       | Hot-water circuit #{$n} |
 | sk{$n}       | Solar thermal collector circuit #{$n} |
 | pe{$n}       | Pellematic heater #{$n} |
-| se{$n}       | ? |
+| se{$n}       | Solar gain data #{$n} |
 | circ{$n}     | Hot-water circulation pump #{$n} |
 
 ## Fields
 The name of the fields are described with the dot-notation syntax. For the field `json_data['system']['L_ambient']` the field name in this documentation would be `system.L_ambient`.
 
 ### system.L_ambient
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| °C   | 0.1    | int  | -32768 to 32767 |
+
+**Description**  
+Temperature that was reported by the ambient temperature sensor. You'll need to multiply the value by the given factor to get the actual temperature in degree celsius als floating point value.
 
 ### system.L_errors
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| None | 1      | int  | -32768 to 32767 |
+
+**Description (Help Wanted)**  
+Unclear if it's an error counter that is equal to the amount of errors that were detected or if the integer value that is reported by the API represents a specific error code or bitflag.
 
 ### system.L_usb_stick
+| Unit | Factor | Type | Range  |
+| ---- | ------ | ---- | ------ |
+| None | None   | bool | 0 or 1 |
+
+**Description (Unsure)**  
+Whether an USB-stick is connected to the Pellematic heater or not.
 
 ### weather.L_temp
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| °C   | 0.1    | int  | -32768 to 32767 |
+
+**Description**  
+Current temperature that was reported by the online weather service (see `weather.L_source` for information about the configured weather provider).
 
 ### weather.L_clouds
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| %    | 1      | int  | -32768 to 32767 |
+
+**Description**  
+How cloudy it currently should be according to the configured online weather service (see `weather.L_source` for information about the configured weather provider).
 
 ### weather.L_forecast_temp
 
@@ -62,12 +92,36 @@ The name of the fields are described with the dot-notation syntax. For the field
 ### forecast.L_w_{0-24}
 
 ### hk{$n}.L_roomtemp_act
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| °C   | 0.1    | int  | -32768 to 32767 |
+
+**Description**  
+The current air temperature that was reported from a sensor that is installed inside a room that is heated by the used heating circuit. This value is zero (0) if there is no sensor installed for the given heating circuit.
 
 ### hk{$n}.L_roomtemp_set
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| °C   | 0.1    | int  | -32768 to 32767 |
+
+**Description**  
+The target air temperature that is set by the user for the selected heating circuit. This value can be ignored if there is no sensor installed for the given heating circuit.
 
 ### hk{$n}.L_flowtemp_act
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| °C   | 0.1    | int  | -32768 to 32767 |
+
+**Description**  
+The current flow temperature ("Vorlauftemperatur") of the heating system for the selected heating circuit.
 
 ### hk{$n}.L_flowtemp_set
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| °C   | 0.1    | int  | -32768 to 32767 |
+
+**Description**  
+The target flow temperature ("Vorlauftemperatur") of the heating system for the selected heating circuit.
 
 ### hk{$n}.L_state
 
