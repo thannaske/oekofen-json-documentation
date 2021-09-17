@@ -127,15 +127,53 @@ The target flow temperature ("Vorlauftemperatur") of the heating system for the 
 
 ### hk{$n}.L_statetext
 
+### hk{$n}.remote_override
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| K    | 0.1    | int  | -32768 to 32767 |
+
+**Description**
+Influences the target room temperature. Basis is the datapoint temp_heat. This datapoint sets the wanted target to +X or -Y relative to the basis of temp_heat. For example, temp_heat is set to 22 degree and remote_override is set to +2 the real target for the heating system is 24 degree.
+
 ### hk{$n}.mode_auto
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| number | 1    | int  | 0 to 3          |
+
+**Description**
+The current mode of the heating circuit. 0: Off, 1: Auto, 2: Heating, 3: Setback
 
 ### hk{$n}.time_prg
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| number | 1    | int  | 0 to 1          |
+
+**Description**
+Defines the current active time program. Value 0 means "time program 1" and value 1 means "time program 2".
 
 ### hk{$n}.temp_setback
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| °C   | 0.1    | int  | -32768 to 32767 |
+
+**Description**
+The current setback ("Absenktemperatur") temperature. Relevant if either the time program defines that current the setback time is active or if the circuit is set to mode 3.
 
 ### hk{$n}.temp_heat
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| °C   | 0.1    | int  | -32768 to 32767 |
+
+**Description**
+The target temperature for the LED room thermostate. This temperature is the target if the remote is set to "middle" position. Relevant for the data point remote_override
 
 ### hk{$n}.temp_vacation
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| °C   | 0.1    | int  | -32768 to 32767 |
+
+**Description**
+The target temperature while the heating system is in vacation mode. The vacation mode is set for a period of time on the touch (remote) control panel or through the app.
 
 ### hk{$n}.name
 
@@ -166,18 +204,37 @@ The target flow temperature ("Vorlauftemperatur") of the heating system for the 
 ### pu{$n}.ext_mintemp_on
 
 ### ww{$n}.L_temp_set
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| °C   | 0.1    | int  | -32768 to 32767 |
+
+**Description**
+The target temperature of the hot water boiler.
 
 ### ww{$n}.L_ontemp_act
 
 ### ww{$n}.L_offtemp_act
 
 ### ww{$n}.L_pump
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| num  | 1      | int  | 0 or 1          |
+
+**Description**
+Indicates if the pump for the water heater is currently running or not. 0 means off, 1 means on.
 
 ### ww{$n}.L_state
 
 ### ww{$n}.L_statetext
 
 ### ww{$n}.time_prg
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| number | 1    | int  | 0 to 1          |
+
+**Description**
+Defines the current active time program. Value 0 means "time program 1" and value 1 means "time program 2".
+
 
 ### ww{$n}.sensor_on
 
@@ -188,6 +245,12 @@ The target flow temperature ("Vorlauftemperatur") of the heating system for the 
 ### ww{$n}.mode_dhw
 
 ### ww{$n}.heat_once
+| Unit | Factor | Type | Range           |
+| ---- | ------ | ---- | --------------- |
+| num  | 1      | int  | 0 or 1          |
+
+**Description**
+If the time program normally would not allow the system to heat the water boiler, this value overrides the behaviour and allows the water to be heated once. This mode is set back after the hot water boiler reaching the target temperature.
 
 ### ww{$n}.temp_min_set
 
